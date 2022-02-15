@@ -21,7 +21,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+
+    // ************************ Da modificare perchè ho messo e aggiunger prima admin perchè ho messo l'home controller all'interno della cartella admin ******************************
+    public const HOME = '/admin/home';
 
     /**
      * Define your route model bindings, pattern filters, etc.

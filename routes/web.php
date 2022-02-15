@@ -19,4 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// AREA PRIVATA BACK OFFICE
+
+// prefix aggiunge admin prima delle rotte;
+// namespace: tutti i controller dell'autenticazione saranno nella cartella admin;
+// middleware auth permette di non aggiungere ad ogni singolo controller il costruttore con this->middleware('auth');
+// group serve solo per  applicare le 3 regole precedenti al gruppo di rotte all'interno della funzione
+Route::prefix("admin")->namespace("Admin")->middleware("auth")->group(function() {
+    // rotta dell'home controller spostata dentro la cartella admin
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource("posts", "PostController");
+});
+
