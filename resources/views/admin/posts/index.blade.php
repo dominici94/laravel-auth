@@ -10,10 +10,13 @@
                 <div class="card-body">
                     <ul>
                         @foreach ($posts as $post)
-                        <li class="mb-3">
+                        <li class="mb-3 d-flex justify-content-between">
                             {{$post->title}}
                             
-                            <a href="{{route("posts.show", $post->id)}}"><button class="btn btn-success">Visualizza</button></a>
+                            <div class="buttons">
+                                <a href="{{route("posts.show", $post->id)}}"><button class="btn btn-success">Visualizza</button></a>
+
+                            </div>
                         </li>
                             
                         @endforeach
