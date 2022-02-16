@@ -8,19 +8,45 @@
                 <div class="card-header">Posts list</div>
 
                 <div class="card-body">
-                    <ul>
-                        @foreach ($posts as $post)
-                        <li class="mb-3 d-flex justify-content-between">
-                            {{$post->title}}
-                            
-                            <div class="buttons">
-                                <a href="{{route("posts.show", $post->id)}}"><button class="btn btn-success">Visualizza</button></a>
+                    <div class="mb-2">
+                        <a href="{{route("posts.create")}}"><button type="button" class="btn btn-success">Aggiungi post</button></a>
+                        
+                    </div>
+                    <table class="table">
 
-                            </div>
-                        </li>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Titolo</th>
+                                <th scope="col">Slug</th>
+                                <th scope="col">Azioni</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach ($posts as $post)
+
+                                <tr>
+                                    <td>{{$post->id}}</td>
+                                    <td>{{$post->title}}</td>
+                                    <td>{{$post->slug}}</td>
+                                    <td>
+                                        <a href="{{route("posts.show", $post->id)}}"><button type="button" class="btn btn-success">Visualizza</button></a>
+                                        <a href="{{route("posts.edit", $post->id)}}"><button type="button" class="btn btn-warning">Modifica</button></a>
+                                        <form action="{{route("posts.destroy", $post->id)}}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                            <button type="submit" class="btn btn-danger">Elimina</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                
+                            @endforeach
                             
-                        @endforeach
-                    </ul>
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
         </div>

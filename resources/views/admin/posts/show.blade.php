@@ -8,7 +8,14 @@
                 <div class="card-header">{{$post->title}}</div>
 
                 <div class="card-body">
-                    
+                    <div class="mb-3">
+                        Stato:
+                        @if ($post->published)
+                            <span class="badge badge-success">Pubblicato</span> 
+                        @else
+                        <span class="badge badge-secondary">Bozza</span>
+                        @endif
+                    </div>
                     {{$post->content}}
 
                 </div>
