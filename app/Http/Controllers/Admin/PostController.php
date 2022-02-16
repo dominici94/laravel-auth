@@ -9,6 +9,13 @@ use App\Post;
 
 class PostController extends Controller
 {
+
+    protected $validationRule = [
+        "title" => "required|string|max:120",
+        "content" => "required",
+        "published" => "sometimes|accepted"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -42,11 +49,7 @@ class PostController extends Controller
 
         // validazione dei dati
 
-        $request->validate([
-            "title" => "required|string|max:120",
-            "content" => "required",
-            "published" => "sometimes|accepted"
-        ]);
+        $request->validate($this->validationRule);
 
         // creazione del post
 
@@ -104,11 +107,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $request->validate([
-            "title" => "required|string|max:120",
-            "content" => "required",
-            "published" => "sometimes|accepted"
-        ]);
+        $request->validate($this->validationRule);
 
         // aggiorno il post
 
